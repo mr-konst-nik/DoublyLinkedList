@@ -58,7 +58,6 @@ func (dl *doublyLinkedList) TraverseForward() error {
 		fmt.Printf("value = %v, prev = %v, next = %v\n", temp.Data, temp.Prev, temp.Next)
 		temp = temp.Next
 	}
-	fmt.Println()
 	return nil
 }
 
@@ -71,7 +70,6 @@ func (dl *doublyLinkedList) TraverseReward() error {
 		fmt.Printf("value = %v, prev = %v, next = %v\n", temp.Data, temp.Prev, temp.Next)
 		temp = temp.Prev
 	}
-	fmt.Println()
 	return nil
 }
 
@@ -88,9 +86,8 @@ func main() {
 	doublyList.AddEndNodeDL("D")
 	doublyList.AddEndNodeDL("E")
 
-	err := doublyList.TraverseReward()
-	if err != nil {
-		fmt.Println(err.Error())
+	if err := doublyList.TraverseReward(); err != nil {
+		fmt.Println(err)
 	}
 
 	fmt.Printf("Len: %v\n", doublyList.GetLen())
