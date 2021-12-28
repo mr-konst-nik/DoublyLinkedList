@@ -1,25 +1,26 @@
-package main
+package list
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 //Node for doubly linked list
 type Node struct {
 	Prev *Node
-	Data string
+	Data interface{}
 	Next *Node
 }
 
-type doublyLinkedList struct {
+//DoublyLinkedList is type of doubly linked list
+type DoublyLinkedList struct {
 	Len  int
 	Tail *Node
 	Head *Node
 }
 
-func initDoublyList() *doublyLinkedList {
-	return &doublyLinkedList{}
-}
-
-func (dl *doublyLinkedList) AddFrontNodeDL(data string) {
+//AddHeadNode adds Node to the beginning
+func (dl *DoublyLinkedList) AddHeadNode(data interface{}) {
 	newNode := &Node{
 		Data: data,
 	}
@@ -34,7 +35,8 @@ func (dl *doublyLinkedList) AddFrontNodeDL(data string) {
 	dl.Len++
 }
 
-func (dl *doublyLinkedList) AddEndNodeDL(data string) {
+//AddTailNode adds Node to the end
+func (dl *DoublyLinkedList) AddTailNode(data interface{}) {
 	newNode := &Node{
 		Data: data,
 	}
@@ -49,9 +51,10 @@ func (dl *doublyLinkedList) AddEndNodeDL(data string) {
 	dl.Len++
 }
 
-func (dl *doublyLinkedList) TraverseForward() error {
+//PrintForward prints Nodes from beginning to the end
+func (dl *DoublyLinkedList) PrintForward() error {
 	if dl.Head == nil {
-		return fmt.Errorf("TraverseError: List is empty")
+		return errors.New("list is empty")
 	}
 	temp := dl.Head
 	for temp != nil {
@@ -61,9 +64,10 @@ func (dl *doublyLinkedList) TraverseForward() error {
 	return nil
 }
 
-func (dl *doublyLinkedList) TraverseReward() error {
+//PrintReward prints Nodes from end to the beginning
+func (dl *DoublyLinkedList) PrintReward() error {
 	if dl.Head == nil {
-		return fmt.Errorf("TraverseError: List is empty")
+		return errors.New("list is empty")
 	}
 	temp := dl.Tail
 	for temp != nil {
@@ -73,22 +77,7 @@ func (dl *doublyLinkedList) TraverseReward() error {
 	return nil
 }
 
-func (dl *doublyLinkedList) GetLen() int {
+//GetLen prints total lengt of the list
+func (dl *DoublyLinkedList) GetLen() int {
 	return dl.Len
-}
-
-func main() {
-	doublyList := initDoublyList()
-	doublyList.AddFrontNodeDL("C")
-	doublyList.AddFrontNodeDL("B")
-	doublyList.AddFrontNodeDL("A")
-	doublyList.AddFrontNodeDL("0")
-	doublyList.AddEndNodeDL("D")
-	doublyList.AddEndNodeDL("E")
-
-	if err := doublyList.TraverseReward(); err != nil {
-		fmt.Println(err)
-	}
-
-	fmt.Printf("Len: %v\n", doublyList.GetLen())
 }

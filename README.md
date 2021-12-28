@@ -1,12 +1,11 @@
-# DoublyLinkedList
+## DoublyLinkedList
 Example of my implementation on doubly linked list.
 
-# Included methods
+## Included methods
 Implementation of methods below:
 
-- initDoublyList()
-- AddFrontNodeDL(data string)
-- AddEndNodeDL(data string)
-- TraverseForward() error
-- TraverseReward() error
+- AddHeadNode(data interface{})
+- AddTailNode(data interface{})
+- PrintForward() error
+- PrintReward() error
 - GetLen() int
